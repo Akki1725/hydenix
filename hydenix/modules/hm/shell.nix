@@ -7,6 +7,7 @@
 
 let
   cfg = config.hydenix.hm.shell;
+  dot = config.hydenix.hm.dotfilesPath;
 in
 {
   options.hydenix.hm.shell = {
@@ -261,29 +262,29 @@ in
 
       (lib.mkIf cfg.fish.enable {
         # Fish configs
-        ".config/fish/config.fish".source = "${pkgs.hydenix.hyde}/Configs/.config/fish/config.fish";
+        ".config/fish/config.fish".source = lib.mkOutOfStoreSymlink "${dot}/fish/config.fish";
         ".config/fish/functions/df.fish".source =
-          "${pkgs.hydenix.hyde}/Configs/.config/fish/functions/df.fish";
+          lib.mkOutOfStoreSymlink "${dot}/fish/functions/df.fish";
         ".config/fish/functions/ffcd.fish".source =
-          "${pkgs.hydenix.hyde}/Configs/.config/fish/functions/ffcd.fish";
+          lib.mkOutOfStoreSymlink "${dot}/fish/functions/ffcd.fish";
         ".config/fish/functions/ffec.fish".source =
-          "${pkgs.hydenix.hyde}/Configs/.config/fish/functions/ffec.fish";
+          lib.mkOutOfStoreSymlink "${dot}/fish/functions/ffec.fish";
         ".config/fish/functions/ffe.fish".source =
-          "${pkgs.hydenix.hyde}/Configs/.config/fish/functions/ffe.fish";
+          lib.mkOutOfStoreSymlink "${dot}/fish/functions/ffe.fish";
       })
 
       # LSD configs - these are always included
       {
-        ".config/lsd/config.yaml".source = "${pkgs.hydenix.hyde}/Configs/.config/lsd/config.yaml";
-        ".config/lsd/icons.yaml".source = "${pkgs.hydenix.hyde}/Configs/.config/lsd/icons.yaml";
-        ".config/lsd/colors.yaml".source = "${pkgs.hydenix.hyde}/Configs/.config/lsd/colors.yaml";
+        ".config/lsd/config.yaml".source = lib.mkOutOfStoreSymlink "${dot}/lsd/config.yaml";
+        ".config/lsd/icons.yaml".source = lib.mkOutOfStoreSymlink "${dot}/lsd/icons.yaml";
+        ".config/lsd/colors.yaml".source = lib.mkOutOfStoreSymlink "${dot}/lsd/colors.yaml";
       }
 
       (lib.mkIf cfg.starship.enable {
         ".config/starship/powerline.toml".source =
-          "${pkgs.hydenix.hyde}/Configs/.config/starship/powerline.toml";
+          lib.mkOutOfStoreSymlink "${dot}/starship/powerline.toml";
         ".config/starship/starship.toml".source =
-          "${pkgs.hydenix.hyde}/Configs/.config/starship/starship.toml";
+          lib.mkOutOfStoreSymlink "${dot}/starship/starship.toml";
       })
     ];
   };

@@ -7,6 +7,7 @@
 
 let
   cfg = config.hydenix.hm.firefox;
+  dot = config.hydenix.hm.dotfilesPath;
 in
 {
   options.hydenix.hm.firefox = {

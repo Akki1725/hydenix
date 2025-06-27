@@ -7,6 +7,7 @@
 
 let
   cfg = config.hydenix.hm.fastfetch;
+  dot = config.hydenix.hm.dotfilesPath;
 in
 {
   options.hydenix.hm.fastfetch = {
@@ -19,15 +20,14 @@ in
 
   config = lib.mkIf cfg.enable {
     home.file = {
-      ".config/fastfetch/config.jsonc" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/fastfetch/config.jsonc";
-      };
-      # TODO: add hydenix logo
-      # TODO: custom logos and pick defaults
+      ".config/fastfetch/config.jsonc".source =
+        lib.file.mkOutOfStoreSymlink "${dot}/fastfetch/config.jsonc";
+    
       ".config/fastfetch/logos" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/fastfetch/logos";
+        source = lib.file.mkOutOfStoreSymlink "${dot}/fastfetch/logos";
         recursive = true;
       };
     };
+
   };
 }

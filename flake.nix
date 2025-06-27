@@ -48,10 +48,10 @@
       };
 
       # Create VM variant of the NixOS configuration
-      vmConfig = import ./lib/vms/nixos-vm.nix {
-        nixosConfiguration = defaultConfig;
-        inherit hydenix-inputs;
-      };
+      # vmConfig = import ./lib/vms/nixos-vm.nix {
+      #   nixosConfiguration = defaultConfig;
+      #   inherit hydenix-inputs;
+      # };
 
       isoConfig = hydenix-inputs.lib.iso {
         inherit hydenix-inputs;

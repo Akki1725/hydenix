@@ -7,6 +7,7 @@
 
 let
   cfg = config.hydenix.hm.social;
+  dot = config.hydenix.hm.dotfilesPath;
 in
 {
   options.hydenix.hm.social = {
@@ -50,7 +51,7 @@ in
 
     home.file = {
       ".config/electron-flags.conf" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/electron-flags.conf";
+        source = "lib.mkOutOfStoreSymlink "${dot}/.internals/electron-flags.conf";
       };
     };
   };

@@ -7,6 +7,7 @@
 
 let
   cfg = config.hydenix.hm.editors;
+  dot = config.hydenix.hm.dotfilesPath;
 in
 {
   options.hydenix.hm.editors = {
@@ -64,30 +65,32 @@ in
     home.file = lib.mkMerge [
       (lib.mkIf cfg.vscode.enable {
         # Editor flags
-        ".config/code-flags.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/code-flags.conf";
-        ".config/codium-flags.conf".source = "${pkgs.hydenix.hyde}/Configs/.config/codium-flags.conf";
+        ".config/code-flags.conf".source = lib.file.mkOutOfStoreSymlink "${dot}/editors/code-flags.conf";
+        ".config/codium-flags.conf".source = lib.file.mkOutOfStoreSymlink "${dot}/editors/codium-flags.conf";
+
 
         # VS Code settings
         ".config/Code - OSS/User/settings.json" = {
-          source = "${pkgs.hydenix.hyde}/Configs/.config/Code - OSS/User/settings.json";
+          source = lib.file.mkOutOfStoreSymlink "${dot}/editors/vscode-settings.json";
           force = true;
           mutable = true;
         };
         ".config/Code/User/settings.json" = {
-          source = "${pkgs.hydenix.hyde}/Configs/.config/Code/User/settings.json";
+          source = config.home.file.".config/Code/User/settings.json";
           force = true;
           mutable = true;
         };
         ".config/VSCodium/User/settings.json" = {
-          source = "${pkgs.hydenix.hyde}/Configs/.config/VSCodium/User/settings.json";
+          source = config.home.file.".config/Code/User/settings.json";
           force = true;
           mutable = true;
         };
       })
+
       (lib.mkIf cfg.vscode.wallbash {
         # Link the wallbash extension from hyde package
         ".vscode/extensions/prasanthrangan.wallbash" = {
-          source = "${pkgs.hydenix.hyde}/share/vscode/extensions/prasanthrangan.wallbash";
+          source = lib.file.mkOutOfStoreSymlink "${dot}/editors/prasanthrangan.wallbash";
           recursive = true;
           mutable = true;
           force = true;
@@ -96,12 +99,13 @@ in
 
       (lib.mkIf (cfg.vim or cfg.neovim) {
         ".config/vim/colors/wallbash.vim" = {
-          source = "${pkgs.hydenix.hyde}/Configs/.config/vim/colors/wallbash.vim";
+          source = lib.file.mkOutOfStoreSymlink "${dot}/editors/vim/colors/wallbash.vim";
           force = true;
           mutable = true;
         };
-        ".config/vim/hyde.vim".source = "${pkgs.hydenix.hyde}/Configs/.config/vim/hyde.vim";
-        ".config/vim/vimrc".source = "${pkgs.hydenix.hyde}/Configs/.config/vim/vimrc";
+        ".config/vim/hyde.vim".source = lib.file.mkOutOfStoreSymlink "${dot}/editors/vim/hyde.vim";
+        ".config/vim/vimrc".source = lib.file.mkOutOfStoreSymlink "${dot}/editors/vim/vimrc";
+
       })
     ];
 

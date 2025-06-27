@@ -7,6 +7,7 @@
 
 let
   cfg = config.hydenix.hm.rofi;
+  dot = config.hydenix.hm.dotfilesPath;
 in
 {
   options.hydenix.hm.rofi = {
@@ -26,7 +27,7 @@ in
       # stateful file, written by wallbash
       # .local/share/hyde/wallbash/theme/rofi.dcol
       ".config/rofi/theme.rasi" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/rofi/theme.rasi";
+        source = lib.mkOutOfStoreSymlink "${dot}/rofi/theme.rasi";
         force = true;
         mutable = true;
       };

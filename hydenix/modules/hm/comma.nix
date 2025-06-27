@@ -14,6 +14,7 @@
 */
 let
   cfg = config.hydenix.hm.comma;
+  dot = config.hydenix.hm.dotfilesPath;
 in
 {
   options.hydenix.hm.comma = {

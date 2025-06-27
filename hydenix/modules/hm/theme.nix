@@ -7,6 +7,7 @@
 
 let
   cfg = config.hydenix.hm.theme;
+  dot = config.hydenix.hm.dotfilesPath;
 
   # Helper function to find a theme package by name, returns null if not found
   findThemeByName = themeName: pkgs.hydenix.themes.${themeName} or null;

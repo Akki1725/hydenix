@@ -7,6 +7,7 @@
 
 let
   cfg = config.hydenix.hm.terminals;
+  dot = config.hydenix.hm.dotfilesPath;
 in
 {
   options.hydenix.hm.terminals = {
@@ -37,7 +38,7 @@ in
 
     home.file = {
       ".config/kitty/hyde.conf" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/kitty/hyde.conf";
+        source = lib.mkOutOfStoreSymlink "${dot}/kitty/hyde.conf";
       };
       ".config/kitty/kitty.conf" = {
         text = ''
@@ -54,7 +55,7 @@ in
       # stateful file for kitty wallbash
 
       ".config/kitty/theme.conf" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/kitty/theme.conf";
+        source = lib.mkOutOfStoreSymlink "${dot}/kitty/theme.conf";
         force = true;
         mutable = true;
       };

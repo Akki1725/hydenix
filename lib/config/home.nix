@@ -55,7 +55,6 @@
         "Tokyo Night"
         "Vanta Black"
         "Windows 11"
-
         "Another World"
         "BlueSky"
         "Cosmic Blue"

@@ -7,6 +7,7 @@
 
 let
   cfg = config.hydenix.hm.qt;
+  dot = config.hydenix.hm.dotfilesPath;
 in
 {
   options.hydenix.hm.qt = {
@@ -37,43 +38,43 @@ in
 
     home.file = {
       ".config/qt5ct/qt5ct.conf" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/qt5ct/qt5ct.conf";
+        source = lib.mkOutOfStoreSymlink "${dot}/qt5ct/qt5ct.conf";
       };
       ".config/qt6ct/qt6ct.conf" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/qt6ct/qt6ct.conf";
+        source = lib.mkOutOfStoreSymlink "${dot}/qt6ct/qt6ct.conf";
       };
       ".config/menus/applications.menu" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/menus/applications.menu";
+        source = lib.mkOutOfStoreSymlink "${dot}/menus/applications.menu";
       };
 
       ".config/Kvantum/wallbash/wallbash.kvconfig" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/Kvantum/wallbash/wallbash.kvconfig";
+        source = lib.mkOutOfStoreSymlink "${dot}/Kvantum/wallbash/wallbash.kvconfig";
         force = true;
         mutable = true;
       };
       ".config/Kvantum/wallbash/wallbash.svg" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/Kvantum/wallbash/wallbash.svg";
+        source = lib.mkOutOfStoreSymlink "${dot}/Kvantum/wallbash/wallbash.svg";
         force = true;
         mutable = true;
       };
       ".config/Kvantum/kvantum.kvconfig" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/Kvantum/kvantum.kvconfig";
+        source = lib.mkOutOfStoreSymlink "${dot}/Kvantum/kvantum.kvconfig";
         force = true;
         mutable = true;
       };
       # stateful files
       ".config/kdeglobals" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/kdeglobals";
+        source = lib.mkOutOfStoreSymlink "${dot}/kdeglobals";
         force = true;
         mutable = true;
       };
       ".config/qt5ct/colors.conf" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/qt5ct/colors.conf";
+        source = lib.mkOutOfStoreSymlink "${dot}/qt5ct/colors.conf";
         force = true;
         mutable = true;
       };
       ".config/qt6ct/colors.conf" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/qt6ct/colors.conf";
+        source = lib.mkOutOfStoreSymlink "${dot}/qt6ct/colors.conf";
         force = true;
         mutable = true;
       };

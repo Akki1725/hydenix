@@ -7,6 +7,7 @@
 
 let
   cfg = config.hydenix.hm.xdg;
+  dot = config.hydenix.hm.dotfilesPath;
 in
 {
   options.hydenix.hm.xdg = {

@@ -7,6 +7,7 @@
 
 let
   cfg = config.hydenix.hm.gtk;
+  dot = config.hydenix.hm.dotfilesPath;
 in
 {
   options.hydenix.hm.gtk = {
@@ -31,27 +32,26 @@ in
       emote
     ];
     home.file = {
-      ".config/nwg-look/config" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/nwg-look/config";
-      };
+      ".config/nwg-look/config" = lib.file.mkOutOfStoreSymlink "${dot}/gtk/nwg-look/config";
 
       # stateful files
-      # TODO: might flash on initial theme change, unnecessary?
       ".config/gtk-3.0/settings.ini" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/gtk-3.0/settings.ini";
+        source = lib.file.mkOutOfStoreSymlink "${dot}/gtk/gtk-3.0/settings.ini";
         force = true;
         mutable = true;
       };
       ".gtkrc-2.0" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.gtkrc-2.0";
+        source = lib.file.mkOutOfStoreSymlink "${dot}/gtk/gtkrc-2.0";
         force = true;
         mutable = true;
       };
+
       ".config/xsettingsd/xsettingsd.conf" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/xsettingsd/xsettingsd.conf";
+        source = lib.file.mkOutOfStoreSymlink "${dot}/gtk/xsettingsd/xsettingsd.conf";
         force = true;
         mutable = true;
       };
+
     };
   };
 }

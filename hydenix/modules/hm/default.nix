@@ -34,6 +34,13 @@
 
   options.hydenix.hm = {
     enable = lib.mkEnableOption "Enable Hydenix home-manager modules globally";
+
+    dotfilesPath = lib.mkOption {
+      type = lib.types.path;
+      default = config.home.homeDirectory + "/.dotfiles";
+      description = "Path to your Git-tracked dotfiles directory";
+  };
+
   };
 
   config = {

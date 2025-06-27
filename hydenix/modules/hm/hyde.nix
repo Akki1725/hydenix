@@ -7,6 +7,7 @@
 
 let
   cfg = config.hydenix.hm.hyde;
+  dot = config.hydenix.hm.dotfilesPath;
 in
 {
 
@@ -40,17 +41,17 @@ in
     home.file = {
       # Regular files (processed first)
       ".config/hyde/wallbash" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/hyde/wallbash";
+        source = lib.mkOutOfStoreSymlink "${dot}/hyde/wallbash";
         recursive = true;
         force = true;
         mutable = true;
       };
 
       ".config/systemd/user/hyde-config.service" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/systemd/user/hyde-config.service";
+        source = lib.mkOutOfStoreSymlink "${dot}/systemd/user/hyde-config.service";
       };
       ".config/systemd/user/hyde-ipc.service" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/systemd/user/hyde-ipc.service";
+        source = lib.mkOutOfStoreSymlink "${dot}/systemd/user/hyde-ipc.service";
       };
 
       ".local/bin/hyde-shell" = {
@@ -58,7 +59,6 @@ in
         executable = true;
       };
 
-      # TODO: requires nix-ld
       ".local/bin/hydectl" = {
         source = "${pkgs.hydenix.hyde}/Configs/.local/bin/hydectl";
         executable = true;
@@ -78,59 +78,59 @@ in
       };
 
       ".local/lib/hyde/globalcontrol.sh" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.local/lib/hyde/globalcontrol.sh";
+        source = lib.mkOutOfStoreSymlink "${dot}/.local/lib/hyde/globalcontrol.sh";
         executable = true;
       };
 
       ".local/share/fastfetch/presets/hyde" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.local/share/fastfetch/presets/hyde";
+        source = lib.mkOutOfStoreSymlink "${dot}/.local/share/fastfetch/presets/hyde";
         recursive = true;
       };
       ".local/share/hyde" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.local/share/hyde";
+        source = lib.mkOutOfStoreSymlink "${dot}/.local/share/hyde";
         recursive = true;
         executable = true;
         force = true;
         mutable = true;
       };
       ".local/share/waybar/includes" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.local/share/waybar/includes";
+        source = lib.mkOutOfStoreSymlink "${dot}/.local/share/waybar/includes";
         recursive = true;
       };
       ".local/share/waybar/layouts" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.local/share/waybar/layouts";
+        source = lib.mkOutOfStoreSymlink "${dot}/.local/share/waybar/layouts";
         recursive = true;
       };
       ".local/share/waybar/menus" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.local/share/waybar/menus";
+        source = lib.mkOutOfStoreSymlink "${dot}/.local/share/waybar/menus";
         recursive = true;
       };
       ".local/share/waybar/modules" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.local/share/waybar/modules";
+        source = lib.mkOutOfStoreSymlink "${dot}/.local/share/waybar/modules";
         recursive = true;
       };
       ".local/share/waybar/styles" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.local/share/waybar/styles";
+        source = lib.mkOutOfStoreSymlink "${dot}/.local/share/waybar/styles";
         force = true;
         mutable = true;
         recursive = true;
       };
       ".config/MangoHud/MangoHud.conf" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/MangoHud/MangoHud.conf";
+        source = lib.mkOutOfStoreSymlink "${dot}/.internals/MangoHud/MangoHud.conf";
       };
       ".local/share/kio/servicemenus/hydewallpaper.desktop" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.local/share/kio/servicemenus/hydewallpaper.desktop";
+        source = lib.mkOutOfStoreSymlink "${dot}/share/kio/servicemenus/hydewallpaper.desktop";
       };
       ".local/share/kxmlgui5/dolphin/dolphinui.rc" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.local/share/kxmlgui5/dolphin/dolphinui.rc";
+        source = lib.mkOutOfStoreSymlink "${dot}/share/kxmlgui5/dolphin/dolphinui.rc";
       };
 
       ".config/electron-flags.conf" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/electron-flags.conf";
+        source = lib.mkOutOfStoreSymlink "${dot}/.internals/electron-flags.conf";
       };
 
       ".local/share/icons/Wallbash-Icon" = {
-        source = "${pkgs.hydenix.hyde}/share/icons/Wallbash-Icon";
+        source = lib.mkOutOfStoreSymlink "${dot}/.internals/icons/Wallbash-Icon";
         force = true;
         recursive = true;
         mutable = true;
@@ -153,7 +153,7 @@ in
         mutable = true;
       };
       ".local/share/themes/Wallbash-Gtk" = {
-        source = "${pkgs.hydenix.hyde}/share/themes/Wallbash-Gtk";
+        source = lib.mkOutOfStoreSymlink "${dot}/.internals/themes/Wallbash-Gtk";
         recursive = true;
         force = true;
         mutable = true;

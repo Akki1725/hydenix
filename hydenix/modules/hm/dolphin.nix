@@ -7,6 +7,7 @@
 
 let
   cfg = config.hydenix.hm.dolphin;
+  dot = config.hydenix.hm.dotfilesPath;
 in
 {
   options.hydenix.hm.dolphin = {
@@ -42,22 +43,20 @@ in
     };
 
     home.file = {
-      ".config/dolphinrc" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/dolphinrc";
-      };
-      ".config/baloofilerc" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/baloofilerc";
-      };
-      ".config/menus/applications.menu" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/menus/applications.menu";
-      };
+      ".config/dolphinrc".source = lib.file.mkOutOfStoreSymlink "${dot}/dolphin/dolphinrc";
+
+      ".config/baloofilerc".source = lib.file.mkOutOfStoreSymlink "${dot}/dolphin/baloofilerc";
+
+      ".config/menus/applications.menu".source = lib.file.mkOutOfStoreSymlink "${dot}/dolphin/menus/applications.menu";
+
 
       # stateful file for themes
       ".config/kdeglobals" = {
-        source = "${pkgs.hydenix.hyde}/Configs/.config/kdeglobals";
+        source = lib.file.mkOutOfStoreSymlink "${dot}/dolphin/kdeglobals";
         force = true;
         mutable = true;
       };
+
     };
   };
 }
